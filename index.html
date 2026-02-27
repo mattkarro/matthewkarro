@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matthew Karro · Cybersecurity Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0d12;
+    --steel: #1a2332;
+    --slate: #2c3e52;
+    --muted: #6b7c93;
+    --pale: #e8ecf1;
+    --paper: #f5f7fa;
+    --white: #ffffff;
+    --accent: #00c8a0;
+    --accent2: #0077cc;
+    --danger: #e63946;
+    --glow: rgba(0,200,160,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,13,18,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 64px;
+  }
+  .nav-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none; font-size: 0.8rem;
+    font-family: 'DM Mono', monospace; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 0 3rem;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,160,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,200,160,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    padding-top: 4rem;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    color: var(--white);
+    line-height: 1.0;
+    margin-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--accent);
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+  .hero-summary {
+    font-size: 1.05rem; color: rgba(255,255,255,0.65);
+    max-width: 620px; line-height: 1.75;
+    margin-bottom: 3rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-bottom: 3rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 1s;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; color: var(--accent);
+    display: block; line-height: 1;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: rgba(255,255,255,0.4);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--ink);
+    padding: 0.85rem 2rem; border: none; cursor: pointer;
+    font-family: 'DM Mono', monospace; font-size: 0.8rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; display: inline-block;
+    transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
+  .btn-primary:hover { background: #00e6b8; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: rgba(255,255,255,0.7);
+    padding: 0.85rem 2rem; border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer; font-family: 'DM Mono', monospace;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; display: inline-block; transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── SECTION SCAFFOLDING ─────────────────────── */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    max-width: 80px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--ink); line-height: 1.2; margin-bottom: 3rem;
+  }
+
+  /* ─── EXPERTISE SECTION ───────────────────────── */
+  #expertise { background: var(--white); }
+  .expertise-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px; background: var(--pale);
+  }
+  .expertise-card {
+    background: var(--white); padding: 2.5rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .expertise-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 3px; height: 0;
+    background: var(--accent); transition: height 0.4s ease;
+  }
+  .expertise-card:hover { transform: translateY(-4px); }
+  .expertise-card:hover::before { height: 100%; }
+  .card-icon {
+    width: 48px; height: 48px; margin-bottom: 1.25rem;
+    background: var(--glow); border: 1px solid rgba(0,200,160,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--ink);
+  }
+  .card-body {
+    font-size: 0.9rem; color: var(--muted); line-height: 1.65;
+  }
+
+  /* ─── EXPERIENCE SECTION ──────────────────────── */
+  #experience { background: var(--paper); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item {
+    padding-left: 2.5rem; margin-bottom: 3.5rem;
+    position: relative;
+    opacity: 0; transform: translateX(-20px);
+    animation: slideIn 0.6s ease forwards;
+  }
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+  .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+  .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+  .timeline-item:nth-child(7) { animation-delay: 0.7s; }
+  .timeline-dot {
+    position: absolute; left: -5px; top: 6px;
+    width: 11px; height: 11px;
+    background: var(--accent); border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--accent);
+  }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.1em; margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; color: var(--ink); margin-bottom: 0.2rem;
+  }
+  .timeline-company {
+    font-size: 0.9rem; color: var(--muted);
+    font-weight: 500; margin-bottom: 1rem;
+  }
+  .timeline-bullets { list-style: none; }
+  .timeline-bullets li {
+    font-size: 0.88rem; color: var(--slate);
+    line-height: 1.6; padding-left: 1rem;
+    position: relative; margin-bottom: 0.4rem;
+  }
+  .timeline-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 0.75rem;
+  }
+
+  /* ─── CERTIFICATIONS ──────────────────────────── */
+  #certifications { background: var(--steel); }
+  #certifications .section-title { color: var(--white); }
+  .cert-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .cert-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 2rem; position: relative;
+    transition: all 0.3s;
+  }
+  .cert-card:hover {
+    border-color: rgba(0,200,160,0.4);
+    background: rgba(0,200,160,0.05);
+    transform: translateY(-3px);
+  }
+  .cert-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .cert-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .cert-valid {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ─── SKILLS SECTION ──────────────────────────── */
+  #skills { background: var(--white); }
+  .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; padding: 0.3rem 0.75rem;
+    background: var(--paper); color: var(--slate);
+    border: 1px solid var(--pale); transition: all 0.2s;
+  }
+  .skill-tag:hover {
+    background: var(--glow); border-color: rgba(0,200,160,0.4);
+    color: var(--accent);
+  }
+
+  /* ─── EDUCATION ───────────────────────────────── */
+  #education { background: var(--paper); }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .edu-card {
+    background: var(--white); padding: 2.5rem;
+    border-left: 3px solid var(--accent);
+  }
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .edu-school { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .edu-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+  }
+
+  /* ─── CONTACT ─────────────────────────────────── */
+  #contact {
+    background: var(--ink); text-align: center; padding: 8rem 3rem;
+  }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+  #contact .section-title { color: var(--white); }
+  .contact-sub {
+    font-size: 1rem; color: rgba(255,255,255,0.5);
+    max-width: 500px; margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+  .contact-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem; color: rgba(255,255,255,0.6);
+    text-decoration: none; letter-spacing: 0.1em;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center; padding: 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── ANIMATIONS ──────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 0 1.5rem; }
+    .hero-stats { gap: 1.5rem; }
+    .skills-layout { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">mk // portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// CISO · CISSP · Principal Engineer</p>
+    <h1 class="hero-name">Matthew<br><em>Karro</em></h1>
+    <p class="hero-title">Chief Information Security Officer</p>
+    <p class="hero-summary">
+      25+ years securing critical systems across defense, aerospace, and commercial sectors.
+      From missile defense contracts to cloud-native architectures — I translate complex
+      cyber risk into decisive strategy.
+    </p>
+    <p class="hero-summary">
+What makes me different is that I don't just manage risk on paper — I've written the code, run the vulnerability scans, hardened the systems, and migrated the infrastructure to the cloud. That means when I sit in the boardroom and tell leadership what it will take to secure their organization, I know exactly what I'm talking about. If you're looking for someone who can bridge the gap between technical execution and strategic security leadership, that's exactly what I do.
+    </p>	
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">25+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div>
+        <span class="stat-num">$600M+</span>
+        <span class="stat-label">Contract Contribution</span>
+      </div>
+      <div>
+        <span class="stat-num">3</span>
+        <span class="stat-label">Certifications</span>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn-outline">View Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-inner">
+    <p class="section-label">core competencies</p>
+    <h2 class="section-title">Where I Create Impact</h2>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="card-icon">🛡️</div>
+        <h3 class="card-title">Strategic Risk Management</h3>
+        <p class="card-body">Architecting cybersecurity frameworks that translate technical threat landscapes into executive-level risk posture visibility and actionable mitigation roadmaps.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="card-icon">☁️</div>
+        <h3 class="card-title">Secure Cloud Migration</h3>
+        <p class="card-body">Leading AWS cloud migrations for legacy defense systems with hardened configuration baselines, IAM controls, and high-availability architectures.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="card-icon">📋</div>
+        <h3 class="card-title">Compliance & Governance</h3>
+        <p class="card-body">Deep expertise in NIST frameworks, STIGs, CMMI, and federal accreditation processes — ensuring systems meet and maintain regulatory standards.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="card-icon">🔐</div>
+        <h3 class="card-title">Secure Software Development</h3>
+        <p class="card-body">25 years building hardened software across defense, embedded, and web domains — from missile defense systems to secure web portals and mobile security apps.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="card-icon">👥</div>
+        <h3 class="card-title">Team Leadership</h3>
+        <p class="card-body">Six years directing high-performing engineering teams to deliver resilient, security-first solutions under demanding timelines and compliance requirements.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="card-icon">🔍</div>
+        <h3 class="card-title">Vulnerability Management</h3>
+        <p class="card-body">Proven track record remediating vulnerabilities from Fortify scans, code reviews, and SOVTs — prioritizing critical risks to reduce attack surface systematically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label">career history</p>
+    <h2 class="section-title">Professional Timeline</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">JAN 2026 – PRESENT</p>
+        <h3 class="timeline-role">Chief Information Security Officer</h3>
+        <p class="timeline-company">Global Integrity</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">FEB 2022 – JAN 2026</p>
+        <h3 class="timeline-role">Principal Software Engineer</h3>
+        <p class="timeline-company">Raytheon Technologies · Richardson, TX</p>
+        <ul class="timeline-bullets">
+          <li>Directed Fortify-driven vulnerability remediation on legacy systems, ensuring timely mitigation of critical risks.</li>
+          <li>Spearheaded secure AWS cloud migration with IAM controls and high-availability architecture.</li>
+          <li>Led Java 8→17 upgrades incorporating security best practices and compliance hardening.</li>
+          <li>Designed executive BI dashboards tracking risk posture, remediation progress, and compliance metrics.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">AUG 2019 – FEB 2022</p>
+        <h3 class="timeline-role">Principal Software Engineer</h3>
+        <p class="timeline-company">L3 Harris · Plano, TX</p>
+        <ul class="timeline-bullets">
+          <li>Architected real-time navigation displays integrated with Inertial Navigation Systems and RF devices, applying encryption and secure communication protocols.</li>
+          <li>Developed embedded C/C++ drivers and Python automation for specialized test equipment.</li>
+          <li>Built data analysis tools providing flight test effectiveness visuals to operators.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">JAN 2017 – AUG 2019</p>
+        <h3 class="timeline-role">Engineer/Scientist 5</h3>
+        <p class="timeline-company">ManTech International · Charleston, SC</p>
+        <ul class="timeline-bullets">
+          <li>Directed SOVTs validating security controls at multiple US Naval Observatory sites.</li>
+          <li>Drove STIG compliance initiatives for OS and application hardening during system upgrades.</li>
+          <li>Architected secure SharePoint platform with access governance, encryption, and audit trails.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">JUN 2015 – OCT 2016</p>
+        <h3 class="timeline-role">Senior Software Engineer</h3>
+        <p class="timeline-company">Temporal Defense Systems · Charleston, SC</p>
+        <ul class="timeline-bullets">
+          <li>Built secure web portal for vulnerability management and automated ingestion pipelines.</li>
+          <li>Developed Android security libraries and device scanning applications for mobile risk assessments.</li>
+          <li>Led production deployments to AWS with high-availability and security group configurations.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">JUL 2014 – JUN 2015</p>
+        <h3 class="timeline-role">Independent Consultant</h3>
+        <p class="timeline-company">George Mason University</p>
+        <ul class="timeline-bullets">
+          <li>Led development of crowdsourced vulnerability scoring portal for community-driven threat intelligence.</li>
+          <li>Architected secure APIs with authentication, encryption, and DDoS-resistant AWS deployments.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">JUN 2000 – MAY 2015</p>
+        <h3 class="timeline-role">Software Engineer 4</h3>
+        <p class="timeline-company">Northrop Grumman Corporation · Various Locations</p>
+        <ul class="timeline-bullets">
+          <li>Led prototype missile defense development contributing to a <strong>$600M+ contract award</strong>.</li>
+          <li>Spearheaded junior engineering teams designing secure radar and launcher software interfaces.</li>
+          <li>Engineered cryptographic protocols for mission-critical message integrity over unreliable networks.</li>
+          <li>Achieved 100% code coverage on safety-critical systems through comprehensive JUnit frameworks.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <p class="section-label" style="color:rgba(255,255,255,0.4);">credentials</p>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <p class="cert-badge">✦ Active</p>
+        <h3 class="cert-name">CISSP</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:0.5rem;">Certified Information Systems Security Professional</p>
+        <p class="cert-valid">Valid through Aug 2026</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-badge">✦ Active</p>
+        <h3 class="cert-name">CKAD</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:0.5rem;">Certified Kubernetes Application Developer</p>
+        <p class="cert-valid">Valid through Feb 2027</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-badge">✦ Completed</p>
+        <h3 class="cert-name">AWS Developer – Associate</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:0.5rem;">Amazon Web Services</p>
+        <p class="cert-valid">Mar 2022 – Mar 2025</p>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;padding:2rem;background:rgba(0,200,160,0.05);border:1px solid rgba(0,200,160,0.2);">
+      <p style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Education</p>
+      <p style="color:rgba(255,255,255,0.7);font-size:0.95rem;">Graduate Certificate in Cybersecurity · <span style="color:var(--muted)">The Citadel (2017–2019)</span></p>
+      <p style="color:rgba(255,255,255,0.7);font-size:0.95rem;margin-top:0.5rem;">BS in Computer Engineering · <span style="color:var(--muted)">NC State University (1996–2000)</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">technical toolkit</p>
+    <h2 class="section-title">Skills & Technologies</h2>
+    <div class="skills-layout">
+      <div>
+        <p class="skill-group-title">// Languages</p>
+        <div class="skill-tags">
+          <span class="skill-tag">C++</span><span class="skill-tag">Java</span><span class="skill-tag">Python</span>
+          <span class="skill-tag">C#</span><span class="skill-tag">JavaScript</span><span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML</span><span class="skill-tag">PHP</span><span class="skill-tag">Perl</span>
+          <span class="skill-tag">XML</span><span class="skill-tag">Visual Basic</span>
+        </div>
+        <p class="skill-group-title">// Cloud & DevOps</p>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">Docker/VMWare</span><span class="skill-tag">Git</span><span class="skill-tag">JIRA</span>
+          <span class="skill-tag">Bamboo</span><span class="skill-tag">Bitbucket</span>
+        </div>
+        <p class="skill-group-title">// Databases</p>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL Server</span><span class="skill-tag">MySQL</span>
+          <span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Cassandra</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">// Security & Compliance</p>
+        <div class="skill-tags">
+          <span class="skill-tag">NIST</span><span class="skill-tag">STIGs</span><span class="skill-tag">CMMI</span>
+          <span class="skill-tag">Fortify</span><span class="skill-tag">Wireshark</span><span class="skill-tag">CISSP</span>
+          <span class="skill-tag">IAM</span><span class="skill-tag">Cryptography</span>
+        </div>
+        <p class="skill-group-title">// Operating Systems</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux (RHEL/Ubuntu)</span><span class="skill-tag">Unix</span>
+          <span class="skill-tag">Windows</span><span class="skill-tag">Android</span>
+        </div>
+        <p class="skill-group-title">// Methodologies</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile/Scrum</span><span class="skill-tag">UML</span>
+          <span class="skill-tag">Requirements Analysis</span><span class="skill-tag">Threat Modeling</span>
+          <span class="skill-tag">Automated Testing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">let's connect</p>
+    <h2 class="section-title">Ready to Build Something<br><em style="font-style:italic;color:var(--accent)">Secure.</em></h2>
+    <p class="contact-sub">Whether you're looking for cybersecurity leadership, a strategic security assessment, or a technical partner with deep defense sector experience — let's talk.</p>
+    <div class="contact-links">
+      <a href="mailto:m.karro@globalintegrity.com" class="contact-link">
+        <span>✉</span> m.karro@globalintegrity.com
+      </a>
+      <a href="tel:2023167794" class="contact-link">
+        <span>☏</span> (202) 316-7794
+      </a>
+      <span class="contact-link">
+        <span>📍</span> Garland, TX
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Matthew Karro · CISSP · All Rights Reserved
+</footer>
+
+</body>
+</html>
